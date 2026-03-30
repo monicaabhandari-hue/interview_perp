@@ -1,10 +1,9 @@
 import { useState } from "react";
 import "./QuestionList.css";
 
-export default function QuestionList({ questions }) {
+export default function QuestionList({ questions, answers, onAnswersChange }) {
   const [activeTab, setActiveTab] = useState("all");
   const [expandedId, setExpandedId] = useState(null);
-  const [answers, setAnswers] = useState({});
   const [feedback, setFeedback] = useState({});
   const [loadingId, setLoadingId] = useState(null);
 
@@ -18,7 +17,7 @@ export default function QuestionList({ questions }) {
   };
 
   const handleAnswerChange = (id, value) => {
-    setAnswers((prev) => ({ ...prev, [id]: value }));
+    onAnswersChange((prev) => ({ ...prev, [id]: value }));
   };
 
   const handleGetFeedback = async (question) => {
